@@ -51,8 +51,8 @@ def find_best_k(data, max_k=10):
     ax2.legend()
 
     plt.tight_layout()
-    plt.savefig('elbow_curve.png')
-    print("Optimization plot saved: elbow_curve.png")
+    plt.savefig('output/elbow_curve.png')
+    print("Optimization plot saved: output/elbow_curve.png")
     plt.close()
 
     # Use the k with the highest silhouette score as the suggested k
@@ -214,14 +214,14 @@ def clustering_pipeline(data_path, n_clusters=None):
     kmeans_score = silhouette_score(data, kmeans_labels)
     print(f"[Quantitative Metric] K-Means Silhouette Score: {kmeans_score:.3f}")
 
-    visualize_clusters_2d(data, kmeans_labels, 'K-Means Clusters', 'clusters_kmeans.png')
+    visualize_clusters_2d(data, kmeans_labels, 'K-Means Clusters', 'output/clusters_kmeans.png')
     kmeans_stats = analyze_clusters(data, kmeans_labels, "K-Means")
 
     # --- DBSCAN Section ---
     print("\n--- Method 2: DBSCAN Clustering ---")
     try:
         dbscan_labels = perform_dbscan(data, eps=2.0, min_samples=5)
-        visualize_clusters_2d(data, dbscan_labels, 'DBSCAN Clusters', 'clusters_dbscan.png')
+        visualize_clusters_2d(data, dbscan_labels, 'DBSCAN Clusters', 'output/clusters_dbscan.png')
         dbscan_stats = analyze_clusters(data, dbscan_labels, "DBSCAN")
 
         # === [新增] 计算并打印 DBSCAN 的轮廓系数 ===
@@ -250,7 +250,7 @@ def clustering_pipeline(data_path, n_clusters=None):
     if dbscan_labels is not None:
         data_with_clusters['dbscan_cluster'] = dbscan_labels
 
-    output_path = 'data_with_clusters.csv'
+    output_path = 'output/data_with_clusters.csv'
     data_with_clusters.to_csv(output_path, index=False)
     print(f"\nData with cluster labels saved: {output_path}")
 
@@ -261,5 +261,5 @@ def clustering_pipeline(data_path, n_clusters=None):
     return kmeans_labels, kmeans_stats
 
 if __name__ == "__main__":
-    data_file = "preprocessed_data.csv"
+    data_file = "output/preprocessed_data.csv"
     clustering_pipeline(data_file, n_clusters=None)

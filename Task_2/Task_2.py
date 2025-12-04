@@ -31,7 +31,7 @@ def main():
 
     # Create output directories if they don't exist
     # 如果输出目录不存在，则创建它们
-    os.makedirs('outputs', exist_ok=True)
+    os.makedirs('output', exist_ok=True)
     os.makedirs('data', exist_ok=True)
 
     # ============ Part 1: Load Datasets (加载数据集) ============
@@ -146,8 +146,8 @@ def main():
 
     # Save extracted features to disk
     # 将提取的特征保存到磁盘
-    np.save('outputs/pets_vgg.npy', pets_vgg_f)
-    np.save('outputs/food_resnet.npy', food_res_f)
+    np.save('output/pets_vgg.npy', pets_vgg_f)
+    np.save('output/food_resnet.npy', food_res_f)
     print("Features saved! ")#(特征已保存!)
 
     # ============ Part 4: Visualization (降维可视化) ============
@@ -194,7 +194,7 @@ def main():
         plt.colorbar(sc, ax=ax[2], label='Class Label')
 
         plt.tight_layout()
-        plt.savefig(f'outputs/{name}_viz.png', dpi=100)
+        plt.savefig(f'output/{name}_viz.png', dpi=100)
         plt.close()
         print(f"Image saved: {name}_viz.png (图片已保存)")
 
@@ -249,7 +249,7 @@ def main():
         ax2.set_ylabel('Davies-Bouldin Score', color='r')
 
         plt.title(f'{name} - Clustering Metrics')
-        plt.savefig(f'outputs/{name}_cluster.png')
+        plt.savefig(f'output/{name}_cluster.png')
         plt.close()
 
         # Find best K based on Silhouette Score
@@ -360,7 +360,7 @@ def main():
 
         print(f"Confusion Matrix \n{cm}")
 
-    print("\n=== Done! All results saved to 'outputs/' folder. ===")
+    print("\n=== Done! All results saved to 'output/' folder. ===")
 
 
 if __name__ == '__main__':

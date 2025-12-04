@@ -49,8 +49,8 @@ def handle_missing_values(data):
     plt.title('Missing Data Heatmap')
     plt.xlabel('Features')
     plt.tight_layout()
-    plt.savefig('01_missing_data_heatmap.png')
-    print("  Visualization saved: 01_missing_data_heatmap.png")
+    plt.savefig('output/01_missing_data_heatmap.png')
+    print("  Visualization saved: output/01_missing_data_heatmap.png")
     plt.close()
 
     # Fill missing values with median for each column
@@ -80,8 +80,8 @@ def remove_outliers(data):
 
     plt.suptitle('Outlier Detection (Boxplots)', fontsize=16, y=1.02)
     plt.tight_layout()
-    plt.savefig('02_outliers_boxplot.png')
-    print("  Visualization saved: 02_outliers_boxplot.png")
+    plt.savefig('output/02_outliers_boxplot.png')
+    print("  Visualization saved: output/02_outliers_boxplot.png")
     plt.close()
 
     original_rows = len(data)
@@ -255,7 +255,7 @@ def preprocess_pipeline(file_path, output_path=None):
     data = remove_outliers(data)
 
     # 4. Analyze correlations
-    corr_matrix = show_correlation(data, 'correlation_matrix.png')
+    corr_matrix = show_correlation(data, 'output/correlation_matrix.png')
 
     # 5. Remove highly correlated features
     data = remove_correlated_features(data, corr_matrix, threshold=0.9)
@@ -264,7 +264,7 @@ def preprocess_pipeline(file_path, output_path=None):
     data = normalize_data(data)
 
     # 7. Perform PCA Analysis
-    perform_pca(data, 'pca_variance.png')
+    perform_pca(data, 'output/pca_variance.png')
 
     # Save preprocessed data
     if output_path:
@@ -283,7 +283,7 @@ def preprocess_pipeline(file_path, output_path=None):
 if __name__ == "__main__":
     # Example usage
     input_file = "ClimateDataBasel.csv"  # Replace with actual file path
-    output_file = "preprocessed_data.csv"
+    output_file = "output/preprocessed_data.csv"
 
     processed_data = preprocess_pipeline(input_file, output_file)
     print(f"\nFinal data shape: {processed_data.shape}")
