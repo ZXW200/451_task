@@ -6,6 +6,7 @@ import seaborn as sns
 import numpy as np
 from sklearn.decomposition import PCA
 import math
+import os
 
 def load_data(file_path):
     """Load CSV data and assign feature names"""
@@ -244,6 +245,9 @@ def preprocess_pipeline(file_path, output_path=None):
     print("=" * 50)
     print("Starting Data Preprocessing Pipeline")
     print("=" * 50)
+
+    # Create output directory if it doesn't exist
+    os.makedirs('output', exist_ok=True)
 
     # 1. Load data
     data = load_data(file_path)
