@@ -47,6 +47,7 @@ def main():
     ])
 
     # --- Dataset 1: Oxford Pets ---
+    # Dataset URL: https://www.robots.ox.ac.uk/~vgg/data/pets/
     print("1. Downloading Oxford Pets... ")#(正在下载 Oxford Pets...)
     pets = OxfordIIITPet(root='./data', split='trainval',
                         download=True, transform=trans)
@@ -58,6 +59,7 @@ def main():
     print(f"Oxford Pets: {len(pets)} images, {len(pets.classes)} classes (类别)")
 
     # --- Dataset 2: Food101 (Subset) ---
+    # Dataset URL: https://www.kaggle.com/datasets/dansbecker/food-101
     print("\n2. Preparing Food101 Dataset (Subset of top 10 classes)...")
     #(正在准备 Food101 数据集 - 前10类子集...)
 
